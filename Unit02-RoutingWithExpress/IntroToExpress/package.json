@@ -1,0 +1,28 @@
+{
+	"name": "Unit02-RoutingWithExpress",
+	"version": "0.0.1",
+	"description": "Routing with Express for NodeJS.",
+	"main": "app.js",
+	"dependencies": {
+		"express": "~4.9.4",
+		"compression": "~1.1.0",
+		"morgan": "~1.3.1",
+		"body-parser": "~1.8.3",
+		"errorhandler": "~1.2.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Oliver Merk",
+	"license": "Apache",
+	"repository": {
+		"type": "git",
+		"url": "NoRepo"
+	},
+	"keywords": [
+		"Node",
+		"JS"
+	],
+	"readme": "getoudahere"
+}

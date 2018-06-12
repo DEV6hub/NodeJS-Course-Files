@@ -1,0 +1,25 @@
+{
+	"name": "Unit05-Socket.io",
+	"version": "0.0.1",
+	"description": "Socket.io with NodeJS.",
+	"main": "app.js",
+	"dependencies": {
+		"connect": "2.x",
+		"socket.io": "^2.1.1"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Oliver Merk",
+	"license": "Apache",
+	"repository": {
+		"type": "git",
+		"url": "GitHappens"
+	},
+	"keywords": [
+		"Node",
+		"JS"
+	],
+	"readme": "moveAlongNothingToSeeHere"
+}

@@ -1,0 +1,29 @@
+{
+	"name": "Unit04-Events",
+	"version": "0.0.1",
+	"description": "Events with NodeJS.",
+	"main": "app.js",
+	"dependencies": {
+		"express": "~4.9.4",
+		"compression": "~1.1.0",
+		"morgan": "~1.3.1",
+		"body-parser": "~1.8.3",
+		"errorhandler": "~1.2.0",
+		"nodeunit": "~0.8.2"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Oliver Merk",
+	"license": "Apache",
+	"repository": {
+		"type": "git",
+		"url": "SillyGit"
+	},
+	"keywords": [
+		"Node",
+		"JS"
+	],
+	"readme": "nada"
+}

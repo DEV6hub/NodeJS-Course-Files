@@ -1,0 +1,58 @@
+{"id" : "c3c24fe7-4271-12ba-b557-a9bf031c9230", "name" : "NodeJSCourse", "timestamp" : 1388764548707, "requests" : [
+	{
+		"collectionId" : "c3c24fe7-4271-12ba-b557-a9bf031c9230",
+		"id" : "829cfecd-83b9-0551-69e2-7c4504d5343a",
+		"name" : "01 Ping",
+		"description" : "",
+		"url" : "http://localhost:3000/ping",
+		"method" : "HEAD",
+		"headers" : "",
+		"data" : [],
+		"dataMode" : "params",
+		"timestamp" : 0,
+		"responses" : [],
+		"version" : 2
+	},
+	{
+		"collectionId" : "c3c24fe7-4271-12ba-b557-a9bf031c9230",
+		"id" : "7b3307ee-96c6-57b6-9454-0672626b95a9",
+		"name" : "02 Routing",
+		"description" : "",
+		"url" : "http://localhost:3000/loginUser?paramsJSON={\"userName\":\"myUserName\", \"password\":\"myPassword\"}",
+		"method" : "POST",
+		"headers" : "",
+		"data" : [],
+		"dataMode" : "urlencoded",
+		"timestamp" : 0,
+		"version" : 2,
+		"time" : 1388764974812
+	},
+	{
+		"collectionId" : "c3c24fe7-4271-12ba-b557-a9bf031c9230",
+		"id" : "95512d9e-920e-7ea6-60de-be5f2e0707f8",
+		"name" : "03 Persistent Data",
+		"description" : "",
+		"url" : "http://localhost:3000/loginUser?paramsJSON={\"userName\":\"myUserName\", \"password\":\"myPassword\"}",
+		"method" : "POST",
+		"headers" : "",
+		"data" : [],
+		"dataMode" : "urlencoded",
+		"timestamp" : 0,
+		"responses" : [],
+		"version" : 2
+	},
+	{
+		"collectionId" : "c3c24fe7-4271-12ba-b557-a9bf031c9230",
+		"id" : "c999dc0b-0f3d-dc9e-d1d1-fae1bb3bf6ce",
+		"name" : "04 Events",
+		"description" : "",
+		"url" : "http://localhost:3000/testEvent",
+		"method" : "POST",
+		"headers" : "",
+		"data" : [],
+		"dataMode" : "urlencoded",
+		"timestamp" : 0,
+		"responses" : [],
+		"version" : 2
+	}
+]}

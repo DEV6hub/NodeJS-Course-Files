@@ -1,0 +1,22 @@
+{
+	"name": "Unit01-IntroductionAndInstallation",
+	"version": "0.0.1",
+	"description": "Introduction and installation of NodeJS.",
+	"main": "app.js",
+	"dependencies": {},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Oliver Merk",
+	"license": "Apache",
+	"repository": {
+		"type": "git",
+		"url": "NoRepo"
+	},
+	"keywords": [
+		"Node",
+		"JS"
+	],
+	"readme": "nada"
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example Test Suite</title>
+	<link rel="stylesheet" href="../node_modules/nodeunit/share/nodeunit.css" type="text/css"/>
+	<script src="lib/nodeunit.js"></script>
+	<script src="suite1.js"></script>
+	<script src="suite2.js"></script>
+</head>
+<body>
+	<h1 id="nodeunit-header">Example Test Suite</h1>
+	<script>
+		nodeunit.run({
+			'Suite One' : suite1,
+			'Suite Two' : suite2
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "thingOne": "red",
+    "thingTwo": "blue",
+    "config": {
+        "option": true
+    }
+}
