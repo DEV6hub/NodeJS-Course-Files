@@ -1,0 +1,32 @@
+{
+  "name": "unit08-rxjs-observables",
+  "version": "1.0.0",
+  "description": "Introduction to implementation of RxJS in NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "build": "rm -rf ./dist && ./node_modules/.bin/babel ./src -d ./dist",
+    "promise": "node ./dist/promise.js",
+    "map": "node ./dist/map.js"
+  },
+  "keywords": [
+    "Nodejs",
+    "RxJS",
+    "Observables"
+  ],
+  "author": "Parth Chokshi",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "rxjs": "^6.2.2"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
