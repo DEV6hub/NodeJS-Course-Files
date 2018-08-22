@@ -10,10 +10,10 @@
  * View the HTTP headers to ensure 'NewTorontoGroup' is there.
  */
 
-var os = require('os'),
-	http = require('http');
+import os from 'os';
+import http from 'http';
 
-var port = 3000;
+const port = 3000;
 
 if (os.type() === 'Windows_NT') {
 	console.log('Introduction: You\'re on Windows.');
@@ -21,7 +21,7 @@ if (os.type() === 'Windows_NT') {
 	console.log('Introduction: You\'re on OSX or Linux.');
 }
 
-http.createServer(function (req, res) {
+http.createServer((req, res) => {
 	res.writeHead(200, {'Content-Type' : 'text/html', 'NewTorontoGroup' : 'Node.js Training'});
 	res.end('<h1 style="font-family: Calibri, Arial, Sans-Serif">Welcome to NodeJS!</h1>');
 }).listen(port);

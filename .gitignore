@@ -1,0 +1,11 @@
+Unit01-IntroductionAndInstallation/node_modules
+Unit02-RoutingWithExpress/ExpressGenerator/node_modules
+Unit02-RoutingWithExpress/IntroToExpress/node_modules
+Unit03-PersistentData/filesystem/node_modules
+Unit03-PersistentData/mysql/node_modules
+Unit04-Events/node_modules
+Unit05-Socket.io/node_modules
+Unit06-UnitTesting/jasmine/node_modules
+Unit06-UnitTesting/mocha/node_modules
+Unit08-Rxjs-Observables/node_modules
+

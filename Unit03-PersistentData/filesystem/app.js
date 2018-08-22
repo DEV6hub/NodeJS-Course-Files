@@ -4,38 +4,29 @@
  * fs provides syncronous and asynchronous function signatures
  */
 
-var fs = require('fs');
-
+import fs from 'fs';
 
 /****************************************************/
 
 // Check if a file exists asynchronously (recommended for intensive processes)
-function checkFile(filename) {
-  fs.exists(filename, function (exists) {
-    if (exists) {
-      console.log(filename + ' found.');
-    } else {
-      console.log(filename + ' not found.');
-    }
-  });
+const checkFile = (filename) => {
+	fs.access(filename, (err) => {
+		console.log(`${filename} ${err ? 'does not exist.\n' : 'exists.\n'}`);
+	});
 };
 
 checkFile('file1.txt');
 checkFile('doesnotexist.txt');
 
 // Check if a file exists synchronously
-function checkFileSync(filename) {
-  try {
-    var exists = fs.existsSync('file1.txt');
-    if (exists) {
-      console.log(filename + ' found.');
-    } else {
-      console.log(filename + ' not found.');
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}
+const checkFileSync = (filename) => {
+	try {
+		fs.accessSync(filename);
+		console.log(`${filename} found.\n`);
+	} catch (err) {
+		console.log(`${filename} cannot be found.\n`);
+	}
+};
 
 checkFileSync('file1.txt');
 checkFileSync('doesnotexist.txt');
@@ -44,53 +35,54 @@ checkFileSync('doesnotexist.txt');
 
 // read a file
 
-fs.readFile('file1.txt', {encoding: 'utf8'}, function (err, data) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(data);
-  }
+fs.readFile('file1.txt', {encoding: 'utf8'}, (err, data) => {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log(`${data}\n`);
+	}
 });
 
 /****************************************************/
 
 // write a file
-var jsonData = {
-  'thingOne' : 'red',
-  'thingTwo' : 'blue',
-  'config': {
-    'option': true,
-  }
+const jsonData = {
+	"thingOne" : "red",
+	"thingTwo" : "blue",
+	"config": {
+		"option": true
+	}
 };
-fs.writeFile('test.json', JSON.stringify(jsonData, null, 4), function (err) {
-  if (err) {
-    console.log('failed to write test.json file');
-  } else {
-    console.log('test.json successfully written to filesystem');
-  }
+
+fs.writeFile('test.json', JSON.stringify(jsonData, null, 4), (err) => {
+	if (err) {
+		console.log('Failed to write test.json file\n');
+	} else {
+		console.log('test.json successfully written to filesystem\n');
+	}
 });
 
 /*
-var http = require('http');
+import http from 'http';
 // request is a writeable stream
-var request = http.request({
+const request = http.request({
   host: 'localhost',
   port: 3000,
   path: '/users',
   method: 'POST'
-}, function (response) {
+}, (response) => {
   //response is a readable stream
-  var responseString = '';
+  const responseString = '';
   response.setEncoding('utf8');
-  response.on('end', function () {
+  response.on('end', () => {
     // finished streaming response back
     console.log(responseString)
   })
-  response.on('data', function (chunk) {
+  response.on('data', (chunk) => {
     responseString += chunk;
   })
 });
-request.on('error', function (e) {
+request.on('error', (e) => {
   console.log('error submitting request');
 });
 request.write('postBody');

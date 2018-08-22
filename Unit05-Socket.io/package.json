@@ -4,12 +4,16 @@
 	"description": "Socket.io with NodeJS.",
 	"main": "app.js",
 	"dependencies": {
-		"connect": "2.x",
+		"connect": "^3.6.6",
 		"socket.io": "^2.1.1"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0"
+	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "./node_modules/.bin/babel src -d ./dist/",
+		"start": "node ./dist/server.js | node ./dist/sockets.js"
 	},
 	"author": "Oliver Merk",
 	"license": "Apache",
@@ -21,5 +25,10 @@
 		"Node",
 		"JS"
 	],
+	"babel": {
+		"presets": [
+			"env"
+		]
+	},
 	"readme": "moveAlongNothingToSeeHere"
 }

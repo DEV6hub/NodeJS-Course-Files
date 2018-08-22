@@ -4,9 +4,14 @@
 	"description": "Introduction and installation of NodeJS.",
 	"main": "app.js",
 	"dependencies": {},
-	"devDependencies": {},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0"
+	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "./node_modules/.bin/babel ./app.js -d ./dist",
+		"start": "node ./dist/app.js"
 	},
 	"author": "Oliver Merk",
 	"license": "Apache",
@@ -18,5 +23,8 @@
 		"Node",
 		"JS"
 	],
+	"babel": {
+		"presets": ["env"]
+	},
 	"readme": "nada"
 }
