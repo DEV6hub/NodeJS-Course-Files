@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/mocha.css">
+    <title>Mocha Test Env</title>
+</head>
+<body>
+<div id='mocha'></div>
+<div id='promise'></div>
+
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../node_modules/chai/chai.js"></script>
+<script>
+	mocha.setup('bdd');
+	var expect = chai.expect;
+</script>
+<!-- Tests -->
+<script src="app_frontend.js"></script>
+<script src="test_frontend.js"></script>
+<script>
+	mocha.run();
+</script>
+</body>
+</html>
