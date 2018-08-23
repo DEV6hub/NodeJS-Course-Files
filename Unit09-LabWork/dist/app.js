@@ -24,6 +24,10 @@ var _like = require('./routes/like');
 
 var _like2 = _interopRequireDefault(_like);
 
+var _bodyParser = require('body-parser');
+
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
 var _db = require('./util/db');
 
 var _db2 = _interopRequireDefault(_db);
@@ -32,14 +36,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
+app.use(_bodyParser2.default.json()); // to support JSON-encoded bodies
+app.use(_bodyParser2.default.urlencoded({ // to support URL-encoded bodies
+	extended: true
+}));
+
 app.use((0, _morgan2.default)('dev'));
 
 app.use('/posts', _posts2.default);
 app.use('/comments', _comments2.default);
 app.use('/like', _like2.default);
 
-_db2.default.connect();
-
-_http2.default.createServer(app).listen(3000);
-
-console.log('Express server start on port 3000');
+// Connect to MySQL on start
+_db2.default.connect(function (err) {
+	if (err) {
+		console.log('Unable to connect to MySQL.\n' + err);
+		process.exit(1);
+	} else {
+		_http2.default.createServer(app).listen(3000, function () {
+			console.log('Listening on port 3000...');
+		});
+	}
+});

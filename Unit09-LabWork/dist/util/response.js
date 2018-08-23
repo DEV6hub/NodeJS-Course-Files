@@ -1,10 +1,15 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
-var response = function response(data, code, message) {
-  return { data: data, code: code, message: message };
+var response = function response(res, data, code, message) {
+	res.statusCode = code;
+	var response = {
+		data: data,
+		message: message
+	};
+	return res.json(response);
 };
 
 exports.default = response;

@@ -4,9 +4,15 @@ import logger from 'morgan';
 import postsRouter from './routes/posts';
 import commentsRouter from './routes/comments';
 import likeRouter from './routes/like';
-import db_connection from './util/db';
+import bodyParser from 'body-parser';
+import db from './util/db';
 
 const app = express();
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+	extended: true
+}));
 
 app.use(logger('dev'));
 
@@ -14,8 +20,14 @@ app.use('/posts', postsRouter);
 app.use('/comments', commentsRouter);
 app.use('/like', likeRouter);
 
-db_connection.connect();
-
-http.createServer(app).listen(3000);
-
-console.log('Express server start on port 3000');
+// Connect to MySQL on start
+db.connect(function(err) {
+	if (err) {
+		console.log('Unable to connect to MySQL.\n'+err);
+		process.exit(1)
+	} else {
+		http.createServer(app).listen(3000, function() {
+			console.log('Listening on port 3000...')
+		})
+	}
+});

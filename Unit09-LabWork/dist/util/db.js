@@ -12,8 +12,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var connectionConfig = {
 	host: 'localhost',
-	user: 'root',
-	password: 'root1234',
+	user: 'nodeuser',
+	password: 'password',
 	database: 'social_media',
 	socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 };
