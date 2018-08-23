@@ -4,7 +4,10 @@
   "description": "Social media app using Nodejs",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/mocha/bin/mocha",
+    "build": "rm -rf ./dist && ./node_modules/.bin/babel ./src -d ./dist",
+    "dev": "npm run build && node ./dist/app.js",
+    "start": "./node_modules/.bin/nodemon --watch src --exec npm run dev"
   },
   "keywords": [
     "Nodejs",
@@ -26,6 +29,10 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3"
+  },
+  "babel": {
+    "presets": ["env"]
   }
 }
