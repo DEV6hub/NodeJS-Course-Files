@@ -34,10 +34,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const env = process.env.NODE_ENV || 'development'
+const env = process.env.NODE_ENV || 'development';
+
 if (env === 'development') {
 	app.use(errorHandler());
-};
+}
 
 const router = express.Router();
 

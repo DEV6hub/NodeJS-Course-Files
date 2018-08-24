@@ -7,7 +7,7 @@
  */
 import SocketIO from 'socket.io';
 
-let io = new SocketIO();
+const io = new SocketIO();
 
 io.listen(3000);
 
