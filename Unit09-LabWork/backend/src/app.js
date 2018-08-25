@@ -26,8 +26,8 @@ db.connect(function(err) {
 		console.log('Unable to connect to MySQL.\n'+err);
 		process.exit(1)
 	} else {
-		http.createServer(app).listen(3000, function() {
-			console.log('Listening on port 3000...')
+		http.createServer(app).listen(4000, function() {
+			console.log('Express server started on port 4000...')
 		})
 	}
 });
