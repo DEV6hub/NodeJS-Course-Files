@@ -3,7 +3,8 @@
 # Backend
 
 1. Install MAMP - https://www.mamp.info/en/downloads/
-2. Change database configs - Username and Password
+2. Change database configs in `backend/util/db.js` - Username and Password
+3. import social_media.sql in phpmyadmin to create required database and tables.
 3. npm install
 4. npm start
 
