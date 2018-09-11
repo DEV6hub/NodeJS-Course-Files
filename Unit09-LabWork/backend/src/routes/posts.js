@@ -16,8 +16,16 @@ postsRouter.get('/:id', (req, res) => {
 });
 
 postsRouter.post('/', (req, res) => {
-	Posts.create(req.body)
-		.then(posts => response(res, {posts}, 200, `Successfully created new post.`))
+
+	let post = {};
+	if(req.file) {
+		post.image_url = 'http://localhost:4000/'+req.file.path;
+	}
+	post.text = req.body.new_post;
+	post.person_id = 1;
+
+	Posts.create(post)
+		.then(feed => response(res, {feed}, 200, `Successfully created new post.`))
 		.catch(err => response(res, {}, 500, 'Failed to get create post'));
 });
 

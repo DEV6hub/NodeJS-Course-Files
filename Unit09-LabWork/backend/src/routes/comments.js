@@ -10,18 +10,22 @@ commentsRouter.get('/:post_id', (req, res) => {
 		.catch(err => response(res, {}, 500, `Failed to get comments for Post No. ${req.params.post_id}`));
 });
 
-commentsRouter.post('/:post_id/:person_id', (req, res) => {
-	Comments.create(req.params.post_id, req.params.person_id)
+commentsRouter.post('/:posts_id/:person_id', (req, res) => {
+	Comments.create(req.params.posts_id, req.params.person_id, req.body.text)
 		.then(comments => response(res, { comments }, 200, 'Successfully created comment'))
 		.catch(err => response(res, {}, 500, 'Failed to create comment.'))
 });
 
-commentsRouter.put('/:comment_id/:post_id', (req, res) => {
-	res.json(response({comments: {}}, 200, `Updated Comment No. ${req.params.comment_id} for Post No. ${req.params.post_id}`));
+commentsRouter.put('/:comment_id/:posts_id', (req, res) => {
+	Comments.update(req.params.posts_id, req.params.comment_id, req.body.text)
+		.then(comments => response(res, { comments }, 200, 'Successfully updated comment'))
+		.catch(err => response(res, {}, 500, 'Failed to create comment.'));
 });
 
-commentsRouter.delete('/:comment_id', (req, res) => {
-	res.json(response({comments: []}, 200, `Deleted Comment No. ${req.params.comment_id}`));
+commentsRouter.delete('/:comment_id/:posts_id', (req, res) => {
+	Comments.delete(req.params.posts_id, req.params.comment_id)
+		.then(comments => response(res, { comments }, 200, 'Successfully deleted comment'))
+		.catch(err => response(res, {}, 500, 'Failed to create comment.'));
 });
 
 export default commentsRouter;

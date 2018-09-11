@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 const styles = {
 	root: {
@@ -27,8 +26,8 @@ const Header = (props) => (
 				<Typography variant="title" color="inherit" className={props.classes.flex}>
 					Dev 6 Social Media
 				</Typography>
-				<Button color="inherit">Sign Up</Button>
-				<Button color="inherit">Login</Button>
+				{/*<Button color="inherit">Sign Up</Button>*/}
+				{/*<Button color="inherit">Login</Button>*/}
 			</Toolbar>
 		</AppBar>
 	</div>

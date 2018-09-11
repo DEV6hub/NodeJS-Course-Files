@@ -35,8 +35,16 @@ postsRouter.get('/:id', function (req, res) {
 });
 
 postsRouter.post('/', function (req, res) {
-	_db_helpers.Posts.create(req.body).then(function (posts) {
-		return (0, _response2.default)(res, { posts: posts }, 200, 'Successfully created new post.');
+
+	var post = {};
+	if (req.file) {
+		post.image_url = 'http://localhost:4000/' + req.file.path;
+	}
+	post.text = req.body.new_post;
+	post.person_id = 1;
+
+	_db_helpers.Posts.create(post).then(function (feed) {
+		return (0, _response2.default)(res, { feed: feed }, 200, 'Successfully created new post.');
 	}).catch(function (err) {
 		return (0, _response2.default)(res, {}, 500, 'Failed to get create post');
 	});
