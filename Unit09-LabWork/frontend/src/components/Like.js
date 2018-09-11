@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import styled from 'styled-components';
 import LikeIcon from '@material-ui/icons/ThumbUp'
 import indigo from '@material-ui/core/colors/indigo';
@@ -41,7 +41,7 @@ const LikedPanel = ({posts_id, person_id, current_posts_id, liked, toggleLikePos
 	</Panel>
 );
 
-class Like extends Component {
+class Like extends PureComponent {
 
 	constructor(props) {
 		super(props);
