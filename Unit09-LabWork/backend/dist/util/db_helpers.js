@@ -61,7 +61,7 @@ var Posts = exports.Posts = {
 					console.log(err);
 					reject(err);
 				}
-				resolve(Posts.getAll());
+				resolve(Feed.getAll());
 			});
 		});
 	}
@@ -114,7 +114,7 @@ var Comments = exports.Comments = {
 	},
 	delete: function _delete(posts_id, id) {
 		return new Promise(function (resolve, reject) {
-			_db2.default.query('DELETE FROM Comments WHERE id = ' + id, function (err, rows) {
+			_db2.default.query('DELETE FROM Comments WHERE posts_id = ? AND id = ?', [posts_id, id], function (err, rows) {
 				if (err) {
 					console.log(err);
 					reject(err);
@@ -128,7 +128,6 @@ var Comments = exports.Comments = {
 var Likes = exports.Likes = {
 	getAll: function getAll(posts_id) {
 		return new Promise(function (resolve, reject) {
-			console.log(posts_id);
 			_db2.default.query('SELECT * FROM Likes WHERE posts_id IN (?)', [posts_id], function (err, rows) {
 				if (err) {
 					console.log(err);

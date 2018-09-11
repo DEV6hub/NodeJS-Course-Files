@@ -52,7 +52,7 @@ export const Posts = {
 					console.log(err);
 					reject(err);
 				}
-				resolve(Posts.getAll());
+				resolve(Feed.getAll());
 			})
 		});
 	}
@@ -105,7 +105,7 @@ export const Comments = {
 	},
 	delete: (posts_id, id) => {
 		return new Promise((resolve, reject) => {
-			db.query(`DELETE FROM Comments WHERE id = ${id}`, (err, rows) => {
+			db.query(`DELETE FROM Comments WHERE posts_id = ? AND id = ?`, [posts_id, id], (err, rows) => {
 				if(err) {
 					console.log(err);
 					reject(err);
@@ -119,7 +119,6 @@ export const Comments = {
 export const Likes = {
 	getAll: (posts_id) => {
 		return new Promise((resolve, reject) => {
-			console.log(posts_id);
 			db.query(`SELECT * FROM Likes WHERE posts_id IN (?)`, [posts_id], (err, rows) => {
 				if(err) {
 					console.log(err);

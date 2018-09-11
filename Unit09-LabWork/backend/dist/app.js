@@ -53,7 +53,6 @@ var app = (0, _express2.default)();
 var storage = _multer2.default.diskStorage({
 	destination: './public/images/uploads',
 	filename: function filename(req, file, cb) {
-		console.log(file);
 		cb(null, file.fieldname + '-' + Date.now() + _path2.default.extname(file.originalname));
 	}
 });
@@ -87,7 +86,6 @@ app.use('/posts', upload, _posts2.default);
 app.use('/comments', _comments2.default);
 
 app.get('/public/images/uploads/:image_name', function (req, res) {
-
 	res.sendFile(_path2.default.resolve(__dirname + '/../public/images/uploads/' + req.params.image_name));
 });
 

@@ -16,11 +16,9 @@ const app = express();
 const storage = multer.diskStorage({
 	destination: './public/images/uploads',
 	filename: (req, file, cb) => {
-		console.log(file);
 		cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
 	}
 });
-
 
 const io = new SocketIO();
 io.on('connection', (client) => {
@@ -51,7 +49,6 @@ app.use('/posts', upload, postsRouter);
 app.use('/comments', commentsRouter);
 
 app.get('/public/images/uploads/:image_name', (req, res) => {
-
 	res.sendFile(path.resolve(__dirname+'/../public/images/uploads/'+req.params.image_name));
 });
 

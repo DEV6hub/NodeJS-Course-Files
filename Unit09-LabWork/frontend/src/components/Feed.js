@@ -24,13 +24,19 @@ class Feed extends Component {
 		this.setState({ feed });
 	};
 
+	deletePost = (posts_id) => {
+		axios.delete('http://localhost:4000/posts/'+posts_id)
+			.then(res => this.setState({ feed: res.data.data.feed }))
+			.catch(err => console.log(err))
+	};
+
 	renderPosts = (feeds) =>
-		feeds.map(feed => <Posts key={feed.post.id} feed={feed} />);
+		feeds.map(feed => <Posts key={feed.post.id} feed={feed} deletePost={this.deletePost} />);
 
 	render() {
 		return (
 			<Fragment>
-				<CreatePost updatePosts={feed => this.updatePosts(feed)}/>
+				<CreatePost updatePosts={this.updatePosts}/>
 				<div style={{ maxWidth: '500px', margin: '0 auto', paddingTop: '20px'}}>
 					{this.state.loadingFeed
 						? <Typography variant="headline">Loading posts...</Typography>

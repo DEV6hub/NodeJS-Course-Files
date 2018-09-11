@@ -21,12 +21,15 @@ postsRouter.post('/', (req, res) => {
 	if(req.file) {
 		post.image_url = 'http://localhost:4000/'+req.file.path;
 	}
-	post.text = req.body.new_post;
+	else if(req.body.image_url) {
+		post.image_url = req.body.image_url;
+	}
+	post.text = req.body.text;
 	post.person_id = 1;
 
 	Posts.create(post)
 		.then(feed => response(res, {feed}, 200, `Successfully created new post.`))
-		.catch(err => response(res, {}, 500, 'Failed to get create post'));
+		.catch(err => response(res, {}, 500, 'Failed to create post'));
 });
 
 postsRouter.put('/:id', (req, res) => {
@@ -37,7 +40,7 @@ postsRouter.put('/:id', (req, res) => {
 
 postsRouter.delete('/:id', (req, res) => {
 	Posts.delete(req.params.id)
-		.then(posts => response(res, {posts}, 200, 'Successfully deleted the post'))
+		.then(feed => response(res, {feed}, 200, 'Successfully deleted the post'))
 		.catch(err => response(res, {}, 500, 'Failed to delete the post'));
 });
 

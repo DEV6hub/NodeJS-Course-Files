@@ -38,7 +38,7 @@ commentsRouter.put('/:comment_id/:posts_id', function (req, res) {
 	_db_helpers.Comments.update(req.params.posts_id, req.params.comment_id, req.body.text).then(function (comments) {
 		return (0, _response2.default)(res, { comments: comments }, 200, 'Successfully updated comment');
 	}).catch(function (err) {
-		return (0, _response2.default)(res, {}, 500, 'Failed to create comment.');
+		return (0, _response2.default)(res, {}, 500, 'Failed to update comment.');
 	});
 });
 
@@ -46,7 +46,7 @@ commentsRouter.delete('/:comment_id/:posts_id', function (req, res) {
 	_db_helpers.Comments.delete(req.params.posts_id, req.params.comment_id).then(function (comments) {
 		return (0, _response2.default)(res, { comments: comments }, 200, 'Successfully deleted comment');
 	}).catch(function (err) {
-		return (0, _response2.default)(res, {}, 500, 'Failed to create comment.');
+		return (0, _response2.default)(res, {}, 500, 'Failed to delete comment.');
 	});
 });
 

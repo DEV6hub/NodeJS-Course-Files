@@ -39,14 +39,16 @@ postsRouter.post('/', function (req, res) {
 	var post = {};
 	if (req.file) {
 		post.image_url = 'http://localhost:4000/' + req.file.path;
+	} else if (req.body.image_url) {
+		post.image_url = req.body.image_url;
 	}
-	post.text = req.body.new_post;
+	post.text = req.body.text;
 	post.person_id = 1;
 
 	_db_helpers.Posts.create(post).then(function (feed) {
 		return (0, _response2.default)(res, { feed: feed }, 200, 'Successfully created new post.');
 	}).catch(function (err) {
-		return (0, _response2.default)(res, {}, 500, 'Failed to get create post');
+		return (0, _response2.default)(res, {}, 500, 'Failed to create post');
 	});
 });
 
@@ -59,8 +61,8 @@ postsRouter.put('/:id', function (req, res) {
 });
 
 postsRouter.delete('/:id', function (req, res) {
-	_db_helpers.Posts.delete(req.params.id).then(function (posts) {
-		return (0, _response2.default)(res, { posts: posts }, 200, 'Successfully deleted the post');
+	_db_helpers.Posts.delete(req.params.id).then(function (feed) {
+		return (0, _response2.default)(res, { feed: feed }, 200, 'Successfully deleted the post');
 	}).catch(function (err) {
 		return (0, _response2.default)(res, {}, 500, 'Failed to delete the post');
 	});

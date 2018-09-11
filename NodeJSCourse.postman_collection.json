@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "9ae9cc09-693f-43d2-8c82-031087773342",
+		"name": "NodeJSCourse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Lab Work",
+			"item": [
+				{
+					"name": "Posts",
+					"item": [
+						{
+							"name": "Retrieve all posts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d336b0a5-6796-4576-a3f7-f4bd50ecb094",
+										"type": "text/javascript",
+										"exec": [
+											"pm.globals.set(\"localhost\", \"localhost:4000\");"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{localhost}}/posts",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve one post",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{localhost}}/posts/1",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "new_post",
+											"value": "Enjoying my vacation in Hawaii",
+											"type": "text"
+										},
+										{
+											"key": "image_url",
+											"value": "https://hawaiiwatersportscenter.com/wp-content/uploads/2015/02/HWS_Wakeboarder_G.jpg",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localhost}}/posts",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Post",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "text",
+											"value": "Hey there! This is an updated post.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localhost}}/posts/2",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete post",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{localhost}}/posts/20",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"posts",
+										"20"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Comments",
+					"item": [
+						{
+							"name": "Get Comments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{localhost}}/comments/26",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"comments",
+										"26"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Comment",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "58899f5a-cbda-47d4-8c1d-dff3d5253705",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "text",
+											"value": "Dope!",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localhost}}/comments/26/{{person_id}}",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"comments",
+										"26",
+										"{{person_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Comment",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "text",
+											"value": "This comment is updated again.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localhost}}/comments/58/26",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"comments",
+										"58",
+										"26"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Comment",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{localhost}}/comments/58/26",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"comments",
+										"58",
+										"26"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Feed",
+					"item": [
+						{
+							"name": "Get Feed",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{localhost}}/feed",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"feed"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "01 Ping",
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{localhost}}/ping/",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"ping",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 Routing",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{localhost}}/loginUser?paramsJSON={\"userName\":\"rod\", \"password\":\"rod1\"}",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"loginUser"
+					],
+					"query": [
+						{
+							"key": "paramsJSON",
+							"value": "{\"userName\":\"rod\", \"password\":\"rod1\"}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 Persistent Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{localhost}}/loginUser?paramsJSON={\"userName\":\"myUserName\", \"password\":\"myPassword\"}",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"loginUser"
+					],
+					"query": [
+						{
+							"key": "paramsJSON",
+							"value": "{\"userName\":\"myUserName\", \"password\":\"myPassword\"}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 Events",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{localhost}}/testEvent",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"testEvent"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

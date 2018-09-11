@@ -41,7 +41,7 @@ class CreatePost extends Component {
 	handleSubmit = event => {
 		event.preventDefault();
 		const formData = new FormData();
-		formData.append('new_post', this.state.post);
+		formData.append('text', this.state.post);
 		if(this.state.selectedFile) {
 			formData.append('post_file', this.state.selectedFile, this.state.selectedFile.name);
 		}
@@ -59,7 +59,7 @@ class CreatePost extends Component {
 			<form onSubmit={this.handleSubmit} className={classes.form} encType="multipart/form-data">
 				<FormControl className={classes.formControl}>
 					<InputLabel htmlFor="new_post">What's on your mind?</InputLabel>
-					<Input type="text" autoComplete="off" id="new_post" name="new_post" value={this.state.post} onChange={this.handleChange}/>
+					<Input type="text" autoComplete="off" id="text" name="text" value={this.state.post} onChange={this.handleChange}/>
 					<Input type="file" name="new_post_file" key={this.state.resetFileInput} onChange={this.handleFileChange} />
 					<Button type="submit" disabled={!this.state.post} variant="outlined" className={classes.button}>Create Post</Button>
 				</FormControl>
