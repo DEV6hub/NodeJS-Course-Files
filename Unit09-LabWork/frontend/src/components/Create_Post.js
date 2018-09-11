@@ -42,7 +42,9 @@ class CreatePost extends Component {
 		event.preventDefault();
 		const formData = new FormData();
 		formData.append('new_post', this.state.post);
-		formData.append('post_file', this.state.selectedFile, this.state.selectedFile.name);
+		if(this.state.selectedFile) {
+			formData.append('post_file', this.state.selectedFile, this.state.selectedFile.name);
+		}
 		axios.post('http://localhost:4000/posts', formData)
 			.then(res => {
 				this.setState({ post: '', resetFileInput: new Date() });
@@ -59,7 +61,7 @@ class CreatePost extends Component {
 					<InputLabel htmlFor="new_post">What's on your mind?</InputLabel>
 					<Input type="text" autoComplete="off" id="new_post" name="new_post" value={this.state.post} onChange={this.handleChange}/>
 					<Input type="file" name="new_post_file" key={this.state.resetFileInput} onChange={this.handleFileChange} />
-					<Button type="submit" variant="outlined" className={classes.button}>Create Post</Button>
+					<Button type="submit" disabled={!this.state.post} variant="outlined" className={classes.button}>Create Post</Button>
 				</FormControl>
 			</form>
 		);

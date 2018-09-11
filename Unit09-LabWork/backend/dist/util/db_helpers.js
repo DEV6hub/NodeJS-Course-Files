@@ -199,10 +199,14 @@ var Feed = exports.Feed = {
 			    posts_id = [];
 			Posts.getAll().then(function (db_posts) {
 				posts = db_posts;
-				posts_id = posts.map(function (post) {
-					return post.id;
-				});
-				return Comments.getAll(posts_id);
+				if (posts.length) {
+					posts_id = posts.map(function (post) {
+						return post.id;
+					});
+					return Comments.getAll(posts_id);
+				}
+				resolve([]);
+				throw new Error('No posts');
 			}).then(function (db_comments) {
 				comments = db_comments;
 				return Likes.getAll(posts_id);

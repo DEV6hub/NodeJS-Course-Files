@@ -25,7 +25,6 @@ const storage = multer.diskStorage({
 const io = new SocketIO();
 io.on('connection', (client) => {
 	client.on('click_like', function(data) {
-		console.log('click like');
 		toggleLike(data, client);
 	});
 });

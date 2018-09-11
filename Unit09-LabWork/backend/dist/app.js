@@ -61,7 +61,6 @@ var storage = _multer2.default.diskStorage({
 var io = new _socket2.default();
 io.on('connection', function (client) {
 	client.on('click_like', function (data) {
-		console.log('click like');
 		(0, _like.toggleLike)(data, client);
 	});
 });

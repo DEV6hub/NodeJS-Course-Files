@@ -10,7 +10,7 @@ var _db_helpers = require('../util/db_helpers');
 var toggleLike = exports.toggleLike = function toggleLike(result, client) {
 	console.log(result);
 	_db_helpers.Likes.toggle(result.posts_id, result.person_id).then(function (liked) {
-		console.log(liked);
+		liked.posts_id = result.posts_id;
 		client.emit('likeToggled', liked);
 	}).catch(function (err) {
 		console.log(err);

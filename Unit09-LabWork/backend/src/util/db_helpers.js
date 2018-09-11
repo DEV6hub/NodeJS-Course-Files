@@ -187,8 +187,12 @@ export const Feed = {
 			Posts.getAll()
 				.then(db_posts => {
 					posts = db_posts;
-					posts_id = posts.map(post => post.id);
-					return Comments.getAll(posts_id);
+					if(posts.length) {
+						posts_id = posts.map(post => post.id);
+						return Comments.getAll(posts_id);
+					}
+					resolve([]);
+					throw new Error('No posts');
 				})
 				.then(db_comments => {
 					comments = db_comments;

@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CloseIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/CheckCircle';
 import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
@@ -131,11 +130,18 @@ class Comments extends Component {
 						value={this.state.comment}
 						onChange={this.handleChange}
 						InputProps={{
-							endAdornment : <InputAdornment position="end">
-								<IconButton onClick={this.resetTextField}>
-									<CloseIcon/>
-								</IconButton>
-							</InputAdornment>
+							endAdornment : (<Fragment>
+								<InputAdornment position="end">
+									<IconButton onClick={this.onSubmit} title="Save">
+										<SaveIcon/>
+									</IconButton>
+								</InputAdornment>
+								<InputAdornment position="end">
+									<IconButton onClick={this.resetTextField} title="Clear">
+										<CloseIcon/>
+									</IconButton>
+								</InputAdornment>
+							</Fragment>)
 						}}
 					/>
 				</form>

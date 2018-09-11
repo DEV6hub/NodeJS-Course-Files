@@ -19,34 +19,35 @@ const LikeText = styled.p`
 	left: 10px;
 `;
 
-const LikedText = LikeText.extend`
+const LikedText = styled(LikeText)`
 	color: ${indigo[500]};
 `;
 
 
-const LikedPanel = ({posts_id, person_id, toggleLikePost}) => (
+const LikedPanel = ({posts_id, person_id, current_posts_id, liked, toggleLikePost}) => (
 	<Panel onClick={() => toggleLikePost(posts_id, person_id)}>
-		<LikeIcon nativeColor={indigo[500]}/>
-		<LikedText>Like</LikedText>
+		{liked
+			?
+			<Fragment>
+				<LikeIcon nativeColor={indigo[500]}/>
+				<LikedText>Like</LikedText>
+			</Fragment>
+			:
+			<Fragment>
+				<LikeIcon/>
+				<LikeText>Like</LikeText>
+			</Fragment>
+		}
 	</Panel>
 );
-
-const UnlikedPanel = ({posts_id, person_id, toggleLikePost }) => (
-	<Panel onClick={() => toggleLikePost(posts_id, person_id)}>
-		<LikeIcon/>
-		<LikeText>Like</LikeText>
-	</Panel>
-);
-
 
 class Like extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { liked: props.liked };
+		this.state = {['liked'+props.posts_id] : props.liked, current_posts_id: props.posts_id };
 		socket.on('likeToggled', (res) => {
-			console.log(res);
-			this.setState({ liked: res.liked });
+			this.setState({ ['liked'+res.posts_id] : res.liked });
 		});
 	}
 
@@ -59,21 +60,13 @@ class Like extends Component {
 		const { posts_id, person_id } = this.props;
 		return (
 			<Fragment>
-				{
-					this.state.liked
-						?
-						<LikedPanel
-							posts_id={posts_id}
-							person_id={person_id}
-							toggleLikePost={this.toggleLikePost}
-						/>
-						:
-						<UnlikedPanel
-							posts_id={posts_id}
-							person_id={person_id}
-							toggleLikePost={this.toggleLikePost}
-						/>
-				}
+				<LikedPanel
+					posts_id={posts_id}
+					current_posts_id={this.state.current_posts_id}
+					person_id={person_id}
+					toggleLikePost={this.toggleLikePost}
+					liked={this.state['liked'+posts_id]}
+				/>
 				<hr/>
 			</Fragment>
 

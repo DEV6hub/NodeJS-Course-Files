@@ -4,7 +4,7 @@ export const toggleLike = (result, client) => {
 	console.log(result);
 	Likes.toggle(result.posts_id, result.person_id)
 		.then(liked => {
-			console.log(liked);
+			liked.posts_id = result.posts_id;
 			client.emit('likeToggled', liked);
 		})
 		.catch(err => {

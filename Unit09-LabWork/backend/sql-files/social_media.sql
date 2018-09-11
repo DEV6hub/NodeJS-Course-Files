@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 11, 2018 at 07:21 PM
+-- Generation Time: Sep 11, 2018 at 07:48 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `social_media`
 --
+CREATE DATABASE IF NOT EXISTS `social_media` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `social_media`;
 
 -- --------------------------------------------------------
 
@@ -124,13 +126,13 @@ ALTER TABLE `Posts`
 -- AUTO_INCREMENT for table `Comments`
 --
 ALTER TABLE `Comments`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `Likes`
 --
 ALTER TABLE `Likes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `Person`
@@ -142,7 +144,7 @@ ALTER TABLE `Person`
 -- AUTO_INCREMENT for table `Posts`
 --
 ALTER TABLE `Posts`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
