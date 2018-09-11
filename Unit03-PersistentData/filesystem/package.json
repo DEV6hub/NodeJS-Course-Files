@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-filesystem-example",
+  "version": "1.0.0",
+  "description": "Demonstration of accessing files via Node file system module",
+  "main": "app.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel app.js -d ./dist",
+    "start": "node ./dist/app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "filesystem"
+  ],
+  "author": "Parth Chokshi",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "babel": {
+    "presets": ["env"]
+  }
+}

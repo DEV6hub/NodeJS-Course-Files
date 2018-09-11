@@ -6,7 +6,7 @@ class Point {
         this.y = y;
     }
     toString() {
-        return this.x + ',' + this.y;
+        return `${this.x},${this.y}`;
     }
 }
 
@@ -16,7 +16,7 @@ class Point3D extends Point{
         this.z = z;
     }
     toString() {
-        return '(' + super.toString() + ',' + this.z +')';
+        return `(${super.toString()},${this.z})`;
     }
 }
 

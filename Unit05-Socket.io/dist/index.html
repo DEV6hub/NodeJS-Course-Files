@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Socket.io</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+	<script>
+		const socket = io.connect('http://localhost:3000');
+
+		(function init() {
+			socket.on('greeting', function (data) {
+				console.log('Socket message:', data);
+				const fromServer = document.getElementById('fromServer');
+				fromServer.innerHTML = 'The server said "' + data.message + '" at ' + data.timestamp;
+			});
+		})();
+
+		function send() {
+			socket.emit('tellMeSomething', { hello : 'back to you!' });
+		}
+	</script>
+</head>
+<body>
+	<h1>Socket to me</h1>
+
+	<button onclick="send()">Send message</button>
+	<br/><br/>
+
+	<div id="fromServer"></div>
+</body>
+</html>
