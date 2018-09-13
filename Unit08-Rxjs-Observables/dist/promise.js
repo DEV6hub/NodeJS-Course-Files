@@ -1,18 +1,6 @@
 'use strict';
 
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
-
-var _http = require('http');
-
-var _http2 = _interopRequireDefault(_http);
-
 var _rxjs = require('rxjs');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var app = (0, _express2.default)();
 
 var samplePromise = function samplePromise() {
 	return new Promise(function (resolve, reject) {
@@ -31,9 +19,4 @@ observable.subscribe(function (data) {
 	return console.log('Error: ' + err);
 }, function () {
 	return console.log('Always there for you!');
-} // Like finally in Promise
-);
-
-_http2.default.createServer(app).listen(3000);
-
-console.log('Express server started on port 3000');
+}); // Like finally in Promise
