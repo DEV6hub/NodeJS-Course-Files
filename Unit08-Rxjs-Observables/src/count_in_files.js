@@ -17,6 +17,39 @@ let readFiles = bindNodeCallback(fs.readFile);
 // Get file content
 let getFileContent = file => readFiles('./sample/'+file,{encoding: 'utf8'});
 
+let count = (acc, current) => {
+
+	let curr = current.toLowerCase();
+
+	if(vowels.indexOf(curr) > -1) {
+
+		if(acc.vowels[curr] === undefined) {
+			acc.vowels[curr] = 1;
+			return acc;
+		}
+
+		else {
+			acc.vowels[curr] = acc.vowels[curr]+=1;
+			return acc;
+		}
+		
+	}
+
+	else {
+
+		if(acc.consonants[curr] === undefined) {
+			acc.consonants[curr] = 1;
+			return acc;
+		}
+
+		else {
+			acc.consonants[curr] = acc.consonants[curr]+=1;
+			return acc;
+		}
+
+	}
+
+};
 // sort object in alphabetical order
 let sort = newFile => {
 
@@ -64,29 +97,7 @@ let source = readDir$('./sample')
 		switchMap(file => file),
 		switchMap(file => file),
 		// count vowels, consonants
-		scan((acc, current) => {
-			let curr = current.toLowerCase();
-			if(vowels.indexOf(curr) > -1) {
-				if(acc.vowels[curr] === undefined) {
-					acc.vowels[curr] = 1;
-					return acc;
-				}
-				else {
-					acc.vowels[curr] = acc.vowels[curr]+=1;
-					return acc;
-				}
-			}
-			else {
-				if(acc.consonants[curr] === undefined) {
-					acc.consonants[curr] = 1;
-					return acc;
-				}
-				else {
-					acc.consonants[curr] = acc.consonants[curr]+=1;
-					return acc;
-				}
-			}
-		}, {vowels: {}, consonants: {}}),
+		scan((acc, current) => count(acc, current), {vowels: {}, consonants: {}}),
 		last(value => value),
 		mergeMap(file => sort(of(file))),
 	)
