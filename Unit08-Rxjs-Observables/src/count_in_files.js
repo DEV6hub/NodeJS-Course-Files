@@ -3,7 +3,7 @@ Count number of vowels and consonants in given files.
  */
 import fs from 'fs';
 import { bindNodeCallback, of } from 'rxjs';
-import { switchMap, last, mergeMap, scan } from 'rxjs/operators';
+import { switchMap, last, map, mergeMap, scan } from 'rxjs/operators';
 
 const vowels = ['a', 'e', 'i', 'o', 'u'];
 const consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
@@ -16,6 +16,20 @@ let readFiles = bindNodeCallback(fs.readFile);
 
 // Get file content
 let getFileContent = file => readFiles('./sample/'+file,{encoding: 'utf8'});
+
+let gather = (fileArray, character) => {
+	//gather vowels
+	if (vowels.indexOf(character) > -1) {
+		fileArray[0]+=character;
+		return fileArray;
+	}
+	// gather consonants
+	else if(consonants.indexOf(character) > -1) {
+		fileArray[1]+=character;
+		return fileArray;
+	}
+	return fileArray;
+};
 
 let count = (acc, current) => {
 
@@ -32,7 +46,7 @@ let count = (acc, current) => {
 			acc.vowels[curr] = acc.vowels[curr]+=1;
 			return acc;
 		}
-		
+
 	}
 
 	else {
@@ -80,19 +94,7 @@ let source = readDir$('./sample')
 		mergeMap(file => file),
 		mergeMap(file => getFileContent(file)),
 		switchMap(file => file),
-		scan((fileArray, character) => {
-			//gather vowels
-			if (vowels.indexOf(character) > -1) {
-				fileArray[0]+=character;
-				return fileArray;
-			}
-			// gather consonants
-			else if(consonants.indexOf(character) > -1) {
-				fileArray[1]+=character;
-				return fileArray;
-			}
-			return fileArray;
-		},['', '']),
+		scan((fileArray, character) => gather(fileArray, character),['', '']),
 		last(val => val),
 		switchMap(file => file),
 		switchMap(file => file),

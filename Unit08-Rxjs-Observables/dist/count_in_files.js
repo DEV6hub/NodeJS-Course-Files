@@ -27,6 +27,43 @@ var getFileContent = function getFileContent(file) {
 	return readFiles('./sample/' + file, { encoding: 'utf8' });
 };
 
+var collect = function collect(fileArray, character) {
+	//gather vowels
+	if (vowels.indexOf(character) > -1) {
+		fileArray[0] += character;
+		return fileArray;
+	}
+	// gather consonants
+	else if (consonants.indexOf(character) > -1) {
+			fileArray[1] += character;
+			return fileArray;
+		}
+	return fileArray;
+};
+var count = function count(acc, current) {
+
+	var curr = current.toLowerCase();
+
+	if (vowels.indexOf(curr) > -1) {
+
+		if (acc.vowels[curr] === undefined) {
+			acc.vowels[curr] = 1;
+			return acc;
+		} else {
+			acc.vowels[curr] = acc.vowels[curr] += 1;
+			return acc;
+		}
+	} else {
+
+		if (acc.consonants[curr] === undefined) {
+			acc.consonants[curr] = 1;
+			return acc;
+		} else {
+			acc.consonants[curr] = acc.consonants[curr] += 1;
+			return acc;
+		}
+	}
+};
 // sort object in alphabetical order
 var sort = function sort(newFile) {
 
@@ -63,17 +100,7 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 }), (0, _operators.switchMap)(function (file) {
 	return file;
 }), (0, _operators.scan)(function (fileArray, character) {
-	//gather vowels
-	if (vowels.indexOf(character) > -1) {
-		fileArray[0] += character;
-		return fileArray;
-	}
-	// gather consonants
-	else if (consonants.indexOf(character) > -1) {
-			fileArray[1] += character;
-			return fileArray;
-		}
-	return fileArray;
+	return collect(fileArray, character);
 }, ['', '']), (0, _operators.last)(function (val) {
 	return val;
 }), (0, _operators.switchMap)(function (file) {
@@ -83,24 +110,7 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 }),
 // count vowels, consonants
 (0, _operators.scan)(function (acc, current) {
-	var curr = current.toLowerCase();
-	if (vowels.indexOf(curr) > -1) {
-		if (acc.vowels[curr] === undefined) {
-			acc.vowels[curr] = 1;
-			return acc;
-		} else {
-			acc.vowels[curr] = acc.vowels[curr] += 1;
-			return acc;
-		}
-	} else {
-		if (acc.consonants[curr] === undefined) {
-			acc.consonants[curr] = 1;
-			return acc;
-		} else {
-			acc.consonants[curr] = acc.consonants[curr] += 1;
-			return acc;
-		}
-	}
+	return count(acc, current);
 }, { vowels: {}, consonants: {} }), (0, _operators.last)(function (value) {
 	return value;
 }), (0, _operators.mergeMap)(function (file) {
