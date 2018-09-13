@@ -27,7 +27,7 @@ var getFileContent = function getFileContent(file) {
 	return readFiles('./sample/' + file, { encoding: 'utf8' });
 };
 
-var collect = function collect(fileArray, character) {
+var gather = function gather(fileArray, character) {
 	//gather vowels
 	if (vowels.indexOf(character) > -1) {
 		fileArray[0] += character;
@@ -40,6 +40,7 @@ var collect = function collect(fileArray, character) {
 		}
 	return fileArray;
 };
+
 var count = function count(acc, current) {
 
 	var curr = current.toLowerCase();
@@ -100,7 +101,7 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 }), (0, _operators.switchMap)(function (file) {
 	return file;
 }), (0, _operators.scan)(function (fileArray, character) {
-	return collect(fileArray, character);
+	return gather(fileArray, character);
 }, ['', '']), (0, _operators.last)(function (val) {
 	return val;
 }), (0, _operators.switchMap)(function (file) {

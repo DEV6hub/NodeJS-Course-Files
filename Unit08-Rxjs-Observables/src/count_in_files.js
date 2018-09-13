@@ -3,7 +3,7 @@ Count number of vowels and consonants in given files.
  */
 import fs from 'fs';
 import { bindNodeCallback, of } from 'rxjs';
-import { switchMap, last, map, mergeMap, scan } from 'rxjs/operators';
+import { switchMap, last, mergeMap, scan } from 'rxjs/operators';
 
 const vowels = ['a', 'e', 'i', 'o', 'u'];
 const consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
