@@ -91,7 +91,7 @@ var sort = function sort(newFile) {
 		});
 	});
 
-	return (0, _rxjs.of)([newVowelObject, newConsonantObject]);
+	return (0, _rxjs.from)([newVowelObject, newConsonantObject]);
 };
 
 var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) {
@@ -119,5 +119,6 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 }));
 
 source.subscribe(function (val) {
-	return console.log('Number of vowels\n', val[0], '\n\nNumber of consonants\n', val[1]);
+	console.log(val);
+	// console.log('Number of vowels\n', val[0], '\n\nNumber of consonants\n', val[1])
 });
