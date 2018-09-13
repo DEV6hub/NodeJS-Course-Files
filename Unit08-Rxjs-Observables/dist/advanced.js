@@ -10,10 +10,11 @@ var _operators = require('rxjs/operators');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var vowels = ['a', 'e', 'i', 'o', 'u'];
+var vowels = ['a', 'e', 'i', 'o', 'u']; /*
+                                        Count number of vowels and consonants in given files.
+                                         */
+
 var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
-var vowelsFileContent = '';
-var consonantsFileContent = '';
 
 // Read dir
 var readDir$ = (0, _rxjs.bindNodeCallback)(_fs2.default.readdir);
@@ -26,31 +27,35 @@ var getFileContent = function getFileContent(file) {
 	return readFiles('./sample/' + file, { encoding: 'utf8' });
 };
 
+// sort object in alphabetical order
 var sort = function sort(newFile) {
 
-	var sortedVowelKeys = {},
-	    sortedConsonantKeys = {};
+	var newVowelObject = {},
+	    newConsonantObject = {};
 
 	newFile.subscribe(function (file) {
-		var vowelKeys = Object.keys(file.vowels).sort(function (a, b) {
-			return a > b;
+
+		var vowelKeys = Object.keys(file.vowels);
+		var consonantKeys = Object.keys(file.consonants);
+		var sortedVowelKeys = vowelKeys.sort(function (a, b) {
+			return a > b ? 1 : -1;
 		});
-		var consonantKeys = Object.keys(file.consonants).sort(function (a, b) {
-			return a > b;
+		var sortedConsonantKeys = consonantKeys.sort(function (a, b) {
+			return a > b ? 1 : -1;
 		});
-		// console.log(vowelKeys, consonantKeys);
-		sortedVowelKeys = vowelKeys.map(function (key) {
-			sortedVowelKeys[key] = file.vowels[key];
-			return sortedVowelKeys;
+
+		sortedVowelKeys.forEach(function (key) {
+			newVowelObject[key] = file.vowels[key];
 		});
-		sortedConsonantKeys = consonantKeys.map(function (key) {
-			sortedConsonantKeys[key] = file.consonants[key];
-			return sortedConsonantKeys;
+
+		sortedConsonantKeys.forEach(function (key) {
+			newConsonantObject[key] = file.consonants[key];
 		});
 	});
 
-	return (0, _rxjs.of)([sortedVowelKeys[0], sortedConsonantKeys[0]]);
+	return (0, _rxjs.of)([newVowelObject, newConsonantObject]);
 };
+
 var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) {
 	return file;
 }), (0, _operators.mergeMap)(function (file) {
@@ -64,10 +69,11 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 		return fileArray;
 	}
 	// gather consonants
-	else {
+	else if (consonants.indexOf(character) > -1) {
 			fileArray[1] += character;
 			return fileArray;
 		}
+	return fileArray;
 }, ['', '']), (0, _operators.last)(function (val) {
 	return val;
 }), (0, _operators.switchMap)(function (file) {
