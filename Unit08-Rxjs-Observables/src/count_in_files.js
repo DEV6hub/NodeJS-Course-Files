@@ -31,34 +31,34 @@ let gather = (fileArray, character) => {
 	return fileArray;
 };
 
-let count = (acc, current) => {
+let count = (totalCount, current) => {
 
 	let curr = current.toLowerCase();
 
 	if(vowels.indexOf(curr) > -1) {
 
-		if(acc.vowels[curr] === undefined) {
-			acc.vowels[curr] = 1;
-			return acc;
+		if(totalCount.vowels[curr] === undefined) {
+			totalCount.vowels[curr] = 1;
+			return totalCount;
 		}
 
 		else {
-			acc.vowels[curr] = acc.vowels[curr]+=1;
-			return acc;
+			totalCount.vowels[curr] = totalCount.vowels[curr]+=1;
+			return totalCount;
 		}
 
 	}
 
 	else {
 
-		if(acc.consonants[curr] === undefined) {
-			acc.consonants[curr] = 1;
-			return acc;
+		if(totalCount.consonants[curr] === undefined) {
+			totalCount.consonants[curr] = 1;
+			return totalCount;
 		}
 
 		else {
-			acc.consonants[curr] = acc.consonants[curr]+=1;
-			return acc;
+			totalCount.consonants[curr] = totalCount.consonants[curr]+=1;
+			return totalCount;
 		}
 
 	}
@@ -99,7 +99,7 @@ let source = readDir$('./sample')
 		switchMap(file => file),
 		switchMap(file => file),
 		// count vowels, consonants
-		scan((acc, current) => count(acc, current), {vowels: {}, consonants: {}}),
+		scan((totalCount, current) => count(totalCount, current), {vowels: {}, consonants: {}}),
 		last(value => value),
 		mergeMap(file => sort(of(file))),
 	)

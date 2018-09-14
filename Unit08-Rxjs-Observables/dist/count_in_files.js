@@ -41,27 +41,27 @@ var gather = function gather(fileArray, character) {
 	return fileArray;
 };
 
-var count = function count(acc, current) {
+var count = function count(totalCount, current) {
 
 	var curr = current.toLowerCase();
 
 	if (vowels.indexOf(curr) > -1) {
 
-		if (acc.vowels[curr] === undefined) {
-			acc.vowels[curr] = 1;
-			return acc;
+		if (totalCount.vowels[curr] === undefined) {
+			totalCount.vowels[curr] = 1;
+			return totalCount;
 		} else {
-			acc.vowels[curr] = acc.vowels[curr] += 1;
-			return acc;
+			totalCount.vowels[curr] = totalCount.vowels[curr] += 1;
+			return totalCount;
 		}
 	} else {
 
-		if (acc.consonants[curr] === undefined) {
-			acc.consonants[curr] = 1;
-			return acc;
+		if (totalCount.consonants[curr] === undefined) {
+			totalCount.consonants[curr] = 1;
+			return totalCount;
 		} else {
-			acc.consonants[curr] = acc.consonants[curr] += 1;
-			return acc;
+			totalCount.consonants[curr] = totalCount.consonants[curr] += 1;
+			return totalCount;
 		}
 	}
 };
@@ -110,8 +110,8 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 	return file;
 }),
 // count vowels, consonants
-(0, _operators.scan)(function (acc, current) {
-	return count(acc, current);
+(0, _operators.scan)(function (totalCount, current) {
+	return count(totalCount, current);
 }, { vowels: {}, consonants: {} }), (0, _operators.last)(function (value) {
 	return value;
 }), (0, _operators.mergeMap)(function (file) {
@@ -119,6 +119,5 @@ var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) 
 }));
 
 source.subscribe(function (val) {
-	console.log(val);
-	// console.log('Number of vowels\n', val[0], '\n\nNumber of consonants\n', val[1])
+	return console.log(val);
 });
