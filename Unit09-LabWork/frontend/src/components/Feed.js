@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Posts from './Posts';
 import axios from 'axios';
 import CreatePost from './Create_Post';
@@ -35,7 +35,7 @@ class Feed extends Component {
 
 	render() {
 		return (
-			<Fragment>
+			<div style={{ padding: 10 }}>
 				<CreatePost updatePosts={this.updatePosts}/>
 				<div style={{ maxWidth: '500px', margin: '0 auto', paddingTop: '20px'}}>
 					{this.state.loadingFeed
@@ -47,7 +47,7 @@ class Feed extends Component {
 								&nbsp;&nbsp;No Posts Yet.
 							</Typography>}
 				</div>
-			</Fragment>
+			</div>
 		);
 	}
 }
