@@ -94,7 +94,7 @@ var sort = function sort(newFile) {
 	return (0, _rxjs.from)([newVowelObject, newConsonantObject]);
 };
 
-var source = readDir$('./sample').pipe((0, _operators.mergeMap)(function (file) {
+var source = readDir$('./sample').pipe((0, _operators.switchMap)(function (file) {
 	return file;
 }), (0, _operators.mergeMap)(function (file) {
 	return getFileContent(file);

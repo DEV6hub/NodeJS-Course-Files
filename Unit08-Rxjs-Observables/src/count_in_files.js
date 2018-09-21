@@ -2,7 +2,7 @@
 Count number of vowels and consonants in given files.
  */
 import fs from 'fs';
-import { bindNodeCallback,from } from 'rxjs';
+import { bindNodeCallback, from, of } from 'rxjs';
 import { switchMap, last, mergeMap, scan } from 'rxjs/operators';
 
 const vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -91,7 +91,7 @@ const sort = newFile => {
 
 const source = readDir$('./sample')
 	.pipe(
-		mergeMap(file => file),
+		switchMap(file => file),
 		mergeMap(file => getFileContent(file)),
 		switchMap(file => file),
 		scan((fileArray, character) => gather(fileArray, character),['', '']),
