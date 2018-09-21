@@ -48,11 +48,13 @@ class ContentMedia extends Component {
 				</Grid>
 				{post.image_url &&
 				<Fragment>
-					<CardMedia onClick={this.handleOpenDialog} style={{cursor: 'pointer', margin: '-5px', height: 0, paddingTop: '56.25%'}} image={post.image_url} title="Media"/>
+					<CardMedia onClick={this.handleOpenDialog} style={{cursor: 'pointer', margin: '-5px', height: 0, paddingTop: '56.25%'}} image={post.image_url}
+										 title="Media"/>
 					<Dialog
 						open={this.state.open}
-						onClose={this.handleClose}>
-						<img src={post.image_url} width="100%" height="100%" title="Media" alt="Media"/>
+						onClose={this.handleClose}
+					>
+						<img src={post.image_url} width="100%" height="100%" title="Media"/>
 					</Dialog>
 				</Fragment>
 				}
