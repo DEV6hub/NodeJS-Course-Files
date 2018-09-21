@@ -4,7 +4,7 @@ import express from 'express';
 import logger from 'morgan';
 import postsRouter from './routes/posts';
 import commentsRouter from './routes/comments';
-import {toggleLike, getLike} from './routes/like';
+import {toggleLike} from './routes/like';
 import feedRouter from './routes/feed';
 import bodyParser from 'body-parser';
 import db from './util/db';
